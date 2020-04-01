@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace principlesformen.Data.Entities
+namespace blog.Data.Entities
 {
     public partial class TblTag
     {

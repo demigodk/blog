@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace principlesformen.Data.Entities
+namespace blog.Data.Entities
 {
     public partial class TblPost
     {
         public TblPost()
         {
             TblComment = new HashSet<TblComment>();
+            TblPostPhoto = new HashSet<TblPostPhoto>();
         }
 
         public int PostId { get; set; }
@@ -17,9 +18,6 @@ namespace principlesformen.Data.Entities
         public int? TagId { get; set; }
         public string Summary { get; set; }
         public string FullBody { get; set; }
-        public byte[] BannerImagePath { get; set; }
-        public byte[] SecondImagePath { get; set; }
-        public byte[] ThirdImagePath { get; set; }
         public int? NumLikes { get; set; }
         public DateTime? DatePublished { get; set; }
         public bool CommentsEnabled { get; set; }
@@ -29,5 +27,6 @@ namespace principlesformen.Data.Entities
         public virtual TblTag Tag { get; set; }
         public virtual TblUser User { get; set; }
         public virtual ICollection<TblComment> TblComment { get; set; }
+        public virtual ICollection<TblPostPhoto> TblPostPhoto { get; set; }
     }
 }

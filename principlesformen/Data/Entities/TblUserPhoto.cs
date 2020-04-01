@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace blog.Data.Entities
 {
-    public partial class TblUserRole
+    public partial class TblUserPhoto
     {
+        public int UserPhotoId { get; set; }
+        public byte[] Photo { get; set; }
         public string UserId { get; set; }
-        public string RoleId { get; set; }
 
-        public virtual TblRole Role { get; set; }
         public virtual TblUser User { get; set; }
     }
 }
