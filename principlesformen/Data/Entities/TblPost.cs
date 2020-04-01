@@ -17,9 +17,9 @@ namespace principlesformen.Data.Entities
         public int? TagId { get; set; }
         public string Summary { get; set; }
         public string FullBody { get; set; }
-        public string BannerImagePath { get; set; }
-        public string SecondImagePath { get; set; }
-        public string ThirdImagePath { get; set; }
+        public byte[] BannerImagePath { get; set; }
+        public byte[] SecondImagePath { get; set; }
+        public byte[] ThirdImagePath { get; set; }
         public int? NumLikes { get; set; }
         public DateTime? DatePublished { get; set; }
         public bool CommentsEnabled { get; set; }

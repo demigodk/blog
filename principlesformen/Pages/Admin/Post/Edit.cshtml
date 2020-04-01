@@ -1,0 +1,96 @@
+﻿@page
+@model principlesformen.Pages.Admin.Post.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>TblPost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TblPost.PostId" />
+            <div class="form-group">
+                <label asp-for="TblPost.UserId" class="control-label"></label>
+                <select asp-for="TblPost.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="TblPost.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.Title" class="control-label"></label>
+                <input asp-for="TblPost.Title" class="form-control" />
+                <span asp-validation-for="TblPost.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.CategoryId" class="control-label"></label>
+                <select asp-for="TblPost.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="TblPost.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.TagId" class="control-label"></label>
+                <select asp-for="TblPost.TagId" class="form-control" asp-items="ViewBag.TagId"></select>
+                <span asp-validation-for="TblPost.TagId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.Summary" class="control-label"></label>
+                <input asp-for="TblPost.Summary" class="form-control" />
+                <span asp-validation-for="TblPost.Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.FullBody" class="control-label"></label>
+                <input asp-for="TblPost.FullBody" class="form-control" />
+                <span asp-validation-for="TblPost.FullBody" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.BannerImagePath" class="control-label"></label>
+                <input asp-for="TblPost.BannerImagePath" class="form-control" />
+                <span asp-validation-for="TblPost.BannerImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.SecondImagePath" class="control-label"></label>
+                <input asp-for="TblPost.SecondImagePath" class="form-control" />
+                <span asp-validation-for="TblPost.SecondImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.ThirdImagePath" class="control-label"></label>
+                <input asp-for="TblPost.ThirdImagePath" class="form-control" />
+                <span asp-validation-for="TblPost.ThirdImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.NumLikes" class="control-label"></label>
+                <input asp-for="TblPost.NumLikes" class="form-control" />
+                <span asp-validation-for="TblPost.NumLikes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.DatePublished" class="control-label"></label>
+                <input asp-for="TblPost.DatePublished" class="form-control" />
+                <span asp-validation-for="TblPost.DatePublished" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TblPost.CommentsEnabled" /> @Html.DisplayNameFor(model => model.TblPost.CommentsEnabled)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TblPost.NumViews" class="control-label"></label>
+                <input asp-for="TblPost.NumViews" class="form-control" />
+                <span asp-validation-for="TblPost.NumViews" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BONDO\\source\\repos\\principlesformen\\principlesformen\\principlesformen.csproj": {}
+    "C:\\Users\\Bondo\\source\\repos\\blog\\principlesformen\\principlesformen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BONDO\\source\\repos\\principlesformen\\principlesformen\\principlesformen.csproj": {
+    "C:\\Users\\Bondo\\source\\repos\\blog\\principlesformen\\principlesformen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BONDO\\source\\repos\\principlesformen\\principlesformen\\principlesformen.csproj",
+        "projectUniqueName": "C:\\Users\\Bondo\\source\\repos\\blog\\principlesformen\\principlesformen.csproj",
         "projectName": "principlesformen",
-        "projectPath": "C:\\Users\\BONDO\\source\\repos\\principlesformen\\principlesformen\\principlesformen.csproj",
-        "packagesPath": "C:\\Users\\BONDO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BONDO\\source\\repos\\principlesformen\\principlesformen\\obj\\",
+        "projectPath": "C:\\Users\\Bondo\\source\\repos\\blog\\principlesformen\\principlesformen.csproj",
+        "packagesPath": "C:\\Users\\Bondo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bondo\\source\\repos\\blog\\principlesformen\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\BONDO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Bondo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -59,9 +54,17 @@
               "target": "Package",
               "version": "[3.1.2, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             }
           },
           "imports": [
@@ -82,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

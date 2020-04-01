@@ -1,0 +1,98 @@
+﻿@page
+@model principlesformen.Pages.Admin.Post.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TblPost</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.Summary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.Summary)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.FullBody)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.FullBody)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.BannerImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.BannerImagePath)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.SecondImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.SecondImagePath)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.ThirdImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.ThirdImagePath)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.NumLikes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.NumLikes)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.DatePublished)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.DatePublished)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.CommentsEnabled)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.CommentsEnabled)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.NumViews)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.NumViews)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.Category.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.Tag)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.Tag.Tag)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TblPost.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TblPost.User.UserId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TblPost.PostId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

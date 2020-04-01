@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace principlesformen.Data.Entities
 {
@@ -15,6 +17,7 @@ namespace principlesformen.Data.Entities
 
         public virtual DbSet<TblCategory> TblCategory { get; set; }
         public virtual DbSet<TblComment> TblComment { get; set; }
+        public virtual DbSet<TblImages> TblImages { get; set; }
         public virtual DbSet<TblPost> TblPost { get; set; }
         public virtual DbSet<TblRole> TblRole { get; set; }
         public virtual DbSet<TblRoleClaim> TblRoleClaim { get; set; }
@@ -23,7 +26,16 @@ namespace principlesformen.Data.Entities
         public virtual DbSet<TblUserClaim> TblUserClaim { get; set; }
         public virtual DbSet<TblUserLogin> TblUserLogin { get; set; }
         public virtual DbSet<TblUserRole> TblUserRole { get; set; }
-        public virtual DbSet<TblUserToken> TblUserToken { get; set; }       
+        public virtual DbSet<TblUserToken> TblUserToken { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=_principlesdb;Integrated Security=True");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,15 +56,17 @@ namespace principlesformen.Data.Entities
 
                 entity.ToTable("tblComment");
 
+                entity.HasIndex(e => e.PostId);
+
+                entity.HasIndex(e => e.UserId);
+
                 entity.Property(e => e.Comment)
                     .IsRequired()
                     .HasMaxLength(700);
 
                 entity.Property(e => e.DatePosted).HasColumnType("date");
 
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.Property(e => e.UserId).IsRequired();
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.TblComment)
@@ -67,11 +81,28 @@ namespace principlesformen.Data.Entities
                     .HasConstraintName("FK_tblComment_tblUser");
             });
 
+            modelBuilder.Entity<TblImages>(entity =>
+            {
+                entity.ToTable("tblImages");
+
+                entity.Property(e => e.ImageData).IsRequired();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
+
             modelBuilder.Entity<TblPost>(entity =>
             {
                 entity.HasKey(e => e.PostId);
 
                 entity.ToTable("tblPost");
+
+                entity.HasIndex(e => e.CategoryId);
+
+                entity.HasIndex(e => e.TagId);
+
+                entity.HasIndex(e => e.UserId);
 
                 entity.Property(e => e.DatePublished).HasColumnType("date");
 
@@ -85,9 +116,7 @@ namespace principlesformen.Data.Entities
                     .IsRequired()
                     .HasMaxLength(144);
 
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.Property(e => e.UserId).IsRequired();
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.TblPost)

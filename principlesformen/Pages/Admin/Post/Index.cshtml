@@ -1,0 +1,114 @@
+﻿@page
+@model principlesformen.Pages.Admin.Post.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].FullBody)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].BannerImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].SecondImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].ThirdImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].NumLikes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].DatePublished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].CommentsEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].NumViews)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblPost[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TblPost)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullBody)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.BannerImagePath)*@
+                    @*<img src="@item.BannerImagePath" width="100" height="100" asp-append-version="true"/>*@
+                    <img src="@ViewData["ImageData"]" asp-append-version="true" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThirdImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumLikes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePublished)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentsEnabled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumViews)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tag.Tag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PostId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PostId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PostId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<img src="@ViewData["ImageData"]" asp-append-version="true" />
