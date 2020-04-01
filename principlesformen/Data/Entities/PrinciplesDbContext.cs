@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace principlesformen.Data.Entities
+namespace blog.Data.Entities
 {
     public partial class PrinciplesDbContext : DbContext
     {
@@ -17,25 +15,17 @@ namespace principlesformen.Data.Entities
 
         public virtual DbSet<TblCategory> TblCategory { get; set; }
         public virtual DbSet<TblComment> TblComment { get; set; }
-        public virtual DbSet<TblImages> TblImages { get; set; }
         public virtual DbSet<TblPost> TblPost { get; set; }
+        public virtual DbSet<TblPostPhoto> TblPostPhoto { get; set; }
         public virtual DbSet<TblRole> TblRole { get; set; }
         public virtual DbSet<TblRoleClaim> TblRoleClaim { get; set; }
         public virtual DbSet<TblTag> TblTag { get; set; }
         public virtual DbSet<TblUser> TblUser { get; set; }
         public virtual DbSet<TblUserClaim> TblUserClaim { get; set; }
         public virtual DbSet<TblUserLogin> TblUserLogin { get; set; }
+        public virtual DbSet<TblUserPhoto> TblUserPhoto { get; set; }
         public virtual DbSet<TblUserRole> TblUserRole { get; set; }
-        public virtual DbSet<TblUserToken> TblUserToken { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=_principlesdb;Integrated Security=True");
-            }
-        }
+        public virtual DbSet<TblUserToken> TblUserToken { get; set; }       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,17 +71,6 @@ namespace principlesformen.Data.Entities
                     .HasConstraintName("FK_tblComment_tblUser");
             });
 
-            modelBuilder.Entity<TblImages>(entity =>
-            {
-                entity.ToTable("tblImages");
-
-                entity.Property(e => e.ImageData).IsRequired();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(255);
-            });
-
             modelBuilder.Entity<TblPost>(entity =>
             {
                 entity.HasKey(e => e.PostId);
@@ -134,6 +113,19 @@ namespace principlesformen.Data.Entities
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblPost_tblUser");
+            });
+
+            modelBuilder.Entity<TblPostPhoto>(entity =>
+            {
+                entity.ToTable("tblPostPhoto");
+
+                entity.Property(e => e.ImageData).IsRequired();
+
+                entity.HasOne(d => d.Post)
+                    .WithMany(p => p.TblPostPhoto)
+                    .HasForeignKey(d => d.PostId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblPostPhoto_tblPost");
             });
 
             modelBuilder.Entity<TblRole>(entity =>
@@ -188,7 +180,17 @@ namespace principlesformen.Data.Entities
                     .IsUnique()
                     .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
+                entity.Property(e => e.AuthorName).HasMaxLength(100);
+
                 entity.Property(e => e.Email).HasMaxLength(256);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 
@@ -227,6 +229,25 @@ namespace principlesformen.Data.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblUserLogin)
                     .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<TblUserPhoto>(entity =>
+            {
+                entity.HasKey(e => e.UserPhotoId);
+
+                entity.ToTable("tblUserPhoto");
+
+                entity.Property(e => e.Photo).IsRequired();
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblUserPhoto)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblUserPhoto_tblUser");
             });
 
             modelBuilder.Entity<TblUserRole>(entity =>

@@ -181,3 +181,4 @@ C:\Users\Bondo\source\repos\blog\principlesformen\obj\Debug\netcoreapp3.1\static
 C:\Users\Bondo\source\repos\blog\principlesformen\obj\Debug\netcoreapp3.1\blog.dll
 C:\Users\Bondo\source\repos\blog\principlesformen\obj\Debug\netcoreapp3.1\blog.pdb
 C:\Users\Bondo\source\repos\blog\principlesformen\obj\Debug\netcoreapp3.1\blog.genruntimeconfig.cache
+C:\Users\Bondo\source\repos\blog\principlesformen\obj\Debug\netcoreapp3.1\blog.csprojAssemblyReference.cache
